@@ -1,26 +1,30 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Pokedex from './Pokedex';
+import Pokecard from './Pokecard';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	let listPokemon = [];
+	for (let Pokemon of Pokedex) {
+		listPokemon.push(
+			<Pokecard
+				key={Pokemon.id}
+				name={Pokemon.name}
+				type={Pokemon.type}
+				exp={Pokemon.base_experience}
+				id={Pokemon.id}
+			/>
+		);
+	}
+
+	let grid = <div className="grid">{listPokemon}</div>;
+
+	return (
+		<div>
+			<h1>Pokedex</h1> {grid}{' '}
+		</div>
+	);
 }
 
 export default App;
